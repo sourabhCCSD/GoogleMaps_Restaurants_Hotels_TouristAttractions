@@ -5,21 +5,29 @@ import PlaceDetails from '../PlaceDetails/PlaceDetails';
 
 
 
-const List = ({places, isLoading, childClicked}) => {
+const List = ({places, isLoading, childClicked, type, setType, rating, setRating}) => {
 
-    const [type, setType] = useState();
-    const [rating, setRating] = useState();
     const [elRefs, setElRefs] = useState([]);
     const classes = useStyles();
 
-    console.log({childClicked})
+    useEffect(() => {
+    const refs = Array(places?.length).fill().map((_,i) => elRefs[i] || createRef());  // assigning ref to each place elmnt
+    setElRefs(refs);
+}, [places]);
+    
 
 
     return(
         <div className={classes.container}>
         <Typography variant='h4'>Restaurants Hotel & Attractions around you</Typography>
-             
-                <FormControl className={classes.formControl}>
+             {
+                 isLoading ? (
+                     <div className={classes.loading}>
+                         <CircularProgress size="5rem" />
+                         </div>
+                 ) : (
+                     <>
+        <FormControl className={classes.formControl}>
                 <InputLabel>Type</InputLabel>
                 <Select value={type} onClick= {(e) => setType(e.target.value)}>
                     <MenuItem value="restaurants" >Restaurants</MenuItem>
@@ -36,13 +44,25 @@ const List = ({places, isLoading, childClicked}) => {
                     <MenuItem value={4.5} >Above 4.5</MenuItem>
                 </Select>
             </FormControl>
+
+
+       {/* BELOW GIRD IS A SPECIFIC ELEMENT ON THE LIST */}
+
         <Grid container className={classes.list}>
             {places?.map((place, i)=> (
                 <Grid item key={i} xs={12}>
-                    <PlaceDetails place={place} />
+                    <PlaceDetails 
+                    place={place}
+                    selected={Number(childClicked) === i}
+                    refProp={elRefs[i]}
+                    />
                 </Grid>
             ))}
         </Grid>
+        </>
+                 ) 
+             }
+                
                
        
        

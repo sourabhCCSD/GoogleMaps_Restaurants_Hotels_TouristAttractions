@@ -5,7 +5,7 @@ import React from 'react';
 import useStyles from './styles';
 import Rating from '@material-ui/lab/Rating';
 
-const Map = ({setCoordinates, setBounds, coordinates, places, setChildClicked  }) => {
+const Map = ({setCoordinates, setBounds, coordinates, places, setChildClicked /* Step 3 receving it from AppJS */  }) => {
     const classes = useStyles();
     const isDesktop = useMediaQuery('(min-width: 600px)'); 
 
@@ -22,8 +22,13 @@ const Map = ({setCoordinates, setBounds, coordinates, places, setChildClicked  }
         setCoordinates({lat: e.center.lat, lng: e.center.lng}) 
         setBounds({ne: e.marginBounds.ne, sw: e.marginBounds.sw})
           }}
-      /*   onChildClick={(child) => setChildClicked(child)}  */
+       onChildClick={(child) => setChildClicked(child)}  //Step 4 Setting its value on every child
       >
+
+
+
+
+
          {
           places.map((place, i) => (
             <div 
@@ -49,7 +54,12 @@ const Map = ({setCoordinates, setBounds, coordinates, places, setChildClicked  }
               }
             </div>
           ))
-        } 
+        }  
+
+
+
+
+
       </GoogleMapReact>
             
   </div>
