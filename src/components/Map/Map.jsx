@@ -25,11 +25,7 @@ const Map = ({setCoordinates, setBounds, coordinates, places, setChildClicked /*
        onChildClick={(child) => setChildClicked(child)}  //Step 4 Setting its value on every child
       >
 
-
-
-
-
-         {
+         {/* {
           places.map((place, i) => (
             <div 
             className={classes.markerContainer}
@@ -54,7 +50,7 @@ const Map = ({setCoordinates, setBounds, coordinates, places, setChildClicked /*
               }
             </div>
           ))
-        }  
+        }   */}
 
 
 

@@ -4,8 +4,8 @@ export default makeStyles((theme) => ({
 
   title: {
     display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
+    [theme.breakpoints.up('sm')]: {  //the title will go for smaller devices(ie xs) and for anything above (up) 'sm' it 
+      display: 'block',   //will show (block).
     },
   },
   search: {
